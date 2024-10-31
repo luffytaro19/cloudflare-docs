@@ -71,10 +71,6 @@ To set up the DLP Forensic Copy Logpush job:
 5. Select a storage destination. Gateway will list any configured Logpush jobs or integrations that can receive HTTP requests.
 6. Select **Save**.
 
-Data Loss Prevention will now send a copy of HTTP requests that match this policy to your Logpush destination.
+DLP will now send a copy of HTTP requests that match this policy to your Logpush destination.
 
-Logpush supports up to four DLP Forensic Copy Logpush jobs per account. By default, Gateway will send all matched HTTP requests to your configured DLP Forensic Copy jobs. To send specific policy matches to specific jobs, configure [Log filters](/logs/reference/filters/).
-
-DLP matched requests above 100 MB will not be sent to storage.
-
-The entire request will be sent to the customer regardless of the Gateway policy action (allow or block), size permitting.
+Logpush supports up to four DLP Forensic Copy Logpush jobs per account. By default, Gateway will send all matched HTTP requests to your configured DLP Forensic Copy jobs. To send specific policy matches to specific jobs, configure [Log filters](/logs/reference/filters/). If the request contains an archive file, DLP will only send up to 100 MB of uncompressed content to your configured storage.
