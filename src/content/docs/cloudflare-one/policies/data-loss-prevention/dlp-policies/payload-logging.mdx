@@ -56,11 +56,25 @@ Neither the key nor the decrypted payload will be stored by Cloudflare.
 
 ## Send HTTP requests to Logpush destination
 
-1. Set up the ["DLP Forensic Copy" Logpush job](https://developers.cloudflare.com/logs/get-started/).
-2. Edit an existing Allow or Block DLP policy, or [create a new policy](/cloudflare-one/policies/data-loss-prevention/dlp-policies/#2-create-a-dlp-policy).
-3. In the policy builder, scroll down to **Configure policy settings** and turn on **Send copy to storage**.
-4. Select **Save**.
+:::note[Availability]
+Only available on Enterprise plans.
+:::
+
+You can use these requests as forensic evidence.
+
+To set up the DLP Forensic Copy Logpush job:
+
+1. Create a [DLP Forensic Copy Logpush job](/logs/get-started/) with Cloudflare Logs.
+2. Go to **Gateway** > **Firewall policies** > **HTTP**.
+3. Edit an existing Allow or Block DLP policy, or [create a new policy](/cloudflare-one/policies/data-loss-prevention/dlp-policies/#2-create-a-dlp-policy).
+4. In the policy builder, scroll down to **Configure policy settings** and turn on **Send copy to storage**.
+5. Select a storage destination. Gateway will list any configured Logpush jobs or integrations that can receive HTTP requests.
+6. Select **Save**.
 
 Data Loss Prevention will now send a copy of HTTP requests that match this policy to your Logpush destination.
 
-Logpush supports up to four DLP Forensic Copy Logpush jobs per account. By default, Gateway will send all matched HTTP requests to all of your configured DLP Forensic Copy jobs. To send specific policy matches to specific jobs, configure [Log filters](/logs/reference/filters/).
+Logpush supports up to four DLP Forensic Copy Logpush jobs per account. By default, Gateway will send all matched HTTP requests to your configured DLP Forensic Copy jobs. To send specific policy matches to specific jobs, configure [Log filters](/logs/reference/filters/).
+
+DLP matched requests above 100 MB will not be sent to storage.
+
+The entire request will be sent to the customer regardless of the Gateway policy action (allow or block), size permitting.
