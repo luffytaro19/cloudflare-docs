@@ -5,9 +5,11 @@ sidebar:
   order: 2
 ---
 
+Data Loss Prevention allows you to capture, store, and view the data that triggered a specific DLP policy for use as forensic evidence. Users on all plans can [log the payload](#log-the-payload-of-matched-policies) of matched HTTP requests in their Cloudflare logs. Additionally, Enterprise users can [configure a Logpush job](#send-http-requests-to-logpush-destination) to send copies of entire matched HTTP requests to storage destinations.
+
 ## Log the payload of matched rules
 
-Data Loss Prevention allows you to log the data that triggered a specific DLP policy. This data is stored in the portion of the HTTP request known as the payload. Payload logging is especially useful when diagnosing the behavior of DLP rules. Since the values that triggered a rule may contain sensitive data, they are encrypted with a customer-provided public key so that only you can examine them later. The stored data will include a redacted version of the match, plus 20 bytes of additional context on both sides of the match.
+The data that triggers a DLP policy is stored in the portion of the HTTP request known as the payload. Payload logging is especially useful when diagnosing the behavior of DLP policies. Since the values that triggered a rule may contain sensitive data, they are encrypted with a customer-provided public key so that only you can examine them later. The stored data will include a redacted version of the match, plus 20 bytes of additional context on both sides of the match.
 
 ### 1. Generate a key pair
 
@@ -60,7 +62,7 @@ Neither the key nor the decrypted payload will be stored by Cloudflare.
 Only available on Enterprise plans.
 :::
 
-Gateway allows you to send copies of entire HTTP requests matched in DLP policies to storage destinations configured in [Logpush](/logs/about/). With the Logpush integration, you can capture, store, and view DLP matches for forensic investigation.
+Gateway allows you to send copies of entire HTTP requests matched in DLP policies to storage destinations configured in [Logpush](/logs/about/), including third-party destinations.
 
 To set up the DLP Forensic Copy Logpush job:
 
